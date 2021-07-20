@@ -1,0 +1,143 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet">
+        <title>와디즈 컬러</title>
+        <style type="text/css">
+            .center {
+                float:center; background-color:skyblue; margin: 90px;
+            }
+            .mid-box {
+                border:1px solid; padding: 30px;
+            }
+            h1 {
+                font-size: 120px;
+                margin-top: 1px;
+                margin-bottom: 1px;
+            }
+            div {
+                font-size: 50px;
+            }
+            .in {
+                font-size: 200%;
+            }
+            .ta1 {
+                width: 600px;
+                height: 10px;
+            }
+            .head {
+                float:center;
+                margin: 50px;
+            }
+            .b1 {
+                border:1px solid;
+                width: 5%;
+                height: 50px;
+                text-align: center;
+            }
+            .c1 {
+                border:1px solid;
+                width: 5%;
+                height: 50px;
+                text-align: center;
+            }
+            .c2 {
+                border:1px solid;
+                width: 5%;
+                height: 150px;
+                text-align: center;
+            }
+        </style>
+        <script type="text/javascript">
+            function change(){
+                //폼 객체 선택
+                var frm = document.forms['frm'];
+                // 주민번호 받기
+                var jumin = frm['jumin'].value;
+                var jumin1 = jumin.split('-')
+                // 주민번호 년,월,일로 분리
+                var year = jumin1[0];
+                var month = jumin1[1];
+                var day = jumin1[2];
+                // 년,월,일 한자리 수로 분리하기
+                var year_sp = year.split('');
+                var month_sp = month.split('');
+                var day_sp = day.split('');
+                // 분리한 년,월,일 서로 더하기
+                var month_sum = parseInt(month_sp[0]) + parseInt(month_sp[1]);
+                var day_sum = parseInt(day_sp[0]) + parseInt(day_sp[1]);
+                var year_sum = parseInt(year_sp[0]) + parseInt(year_sp[1]) + parseInt(year_sp[2]) + parseInt(year_sp[3]);
+                // 탄생컬러 넣기 첫번째
+                var tsc = day.replace(/(^0+)/, "");
+                frm['tsc'].value = tsc;
+                document.getElementById('tsci').src="colorbottle9/"+tsc+".png";
+                // 전역 변수 지정
+                var fic;
+                var sec;
+                var thc;
+                // 두번째 과정
+                fic = year_sum + month_sum + day_sum;
+                fic = fic.toString();
+                fic = fic.split('');
+                fic = parseInt(fic[0]) + parseInt(fic[1]);
+                fic = fic.toString();
+                if (fic.length == 2) {
+                    frm['sac1'].value = fic;
+                    document.getElementById('sac1i').src="colorbottle9/"+fic+".png";
+                    var fic_sp = fic.split('');
+                    var fic_sum = parseInt(fic_sp[0]) + parseInt(fic_sp[1]);
+                    fic_sum.toString();
+                    if (fic_sum.length == 2) {
+                        sec = fic_sum.split('');
+                        var sec_sum = parseInt(sec[0]) + parseInt(sec[1]);
+                        frm['sac2'].value = fic_sum;
+                        document.getElementById('sac2i').src="colorbottle9/"+fic_sum+".png";
+                        frm['isc'].value = sec_sum;
+                        document.getElementById('isci').src="colorbottle9/"+sec_sum+".png";
+                    } else {
+                        frm['isc'].value = fic_sum;
+                        document.getElementById('isci').src="colorbottle9/"+fic_sum+".png";
+                    }
+                } else {
+                    frm['isc'].value = fic;
+                    document.getElementById('isci').src="colorbottle9/"+fic+".png";
+                }
+                
+                event.preventDefault();
+            }
+        </script>
+    </head>
+    <body>
+    <form name="frm">
+    <div class="center">
+        <div class="head">
+            <div>색을 통한 치유, 컬러테라피</div>
+            <h1 text-indent: 2em>Life Color ?<button id="button" onclick="change();changeImg();">컬러 알아보기</button></h1>
+            <div>내가 태어난 날에 녹아 있는 삶의 컬러 에너지</div>
+            
+        </div>
+        <div class="mid-box">
+            <table class="ta1">
+                    <th class="b1">이 름</th><th class="b1"><input type="text" class="in" style="border:none" name="name" value="홍길동"/></th>
+                <tr>
+                    <td class="b1">생 년 월 일</td><td class="b1"><input type="text" class="in" style="border:none" name="jumin" value="1997-07-09"/></td>
+                </tr>
+            </table>
+            <table class="ta2">
+                <th class="c1">탄생 컬러</th>
+                <th class="c1">생애 컬러</th>
+                <th class="c1">생애 컬러</th>
+                <th class="c1">인생여정 컬러</th>
+                <tr>
+                    <td class="c2"><input class="result" type="hidden" name="tsc" size="2" /><img id="tsci" class="img1" src="colorbottle9/0.png"></td>
+                    <td class="c2"><input class="result" type="hidden" name="sac1" size="2" /><img id="sac1i" class="img1" src="colorbottle9/0.png"></td>
+                    <td class="c2"><input class="result" type="hidden" name="sac2" size="2" /><img id="sac2i" class="img1" src="colorbottle9/0.png"></td>
+                    <td class="c2"><input class="result" type="hidden" name="isc" size="2" /><img id="isci" class="img1" src="colorbottle9/0.png"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    </form>
+    </body>
+</html>
