@@ -8,6 +8,7 @@
             .center {
                 float:center;
                 margin: 90px;
+                background-color: skyblue
             }
             .mid-box {
                padding-left: 100px; margin: -30px; font-size: 14pt;
@@ -17,21 +18,28 @@
                 margin-top: 1px;
                 margin-bottom: 1px;
             }
+            .hea{
+                font-size: 25pt;
+            }
             div {
                 font-size: 50px;
+                color: cornsilk;
             }
             .in {
-                font-size: 200%;
+                font-size: 30pt;
+                width: 300px;
                 border: none;
                 background: transparent;
+                color: cornsilk;
             }
             .ta1 {
                 width: 600px;
                 height: 10px;
             }
             .ta2 {
-                width: 70%;
+                width: 40%;
                 height: 30%;
+                margin: -20px;
             }
             .head {
                 float:center;
@@ -39,7 +47,7 @@
             }
             .a1 {
                 font-size:30pt;
-                border: 
+                color: cornsilk;
             }
             .b1 {
                 width: 30%;
@@ -50,9 +58,10 @@
             .c1 {
                 width: 1px;
                 height: 50px;
-                font-size: 14pt;
+                font-size: 25pt;
                 text-align: center;
-                padding: 1%;
+                padding: 2%;
+                color: cornsilk;
             }
             .c2 {
                 width: 5%;
@@ -60,8 +69,32 @@
                 text-align: center;
             }
             #footer {
-                width:100%; height:100px; float:left; margin-top:5px; clear: both; text-align: center; bottom: 0; font-family:"fo"; font-size: 13pt;
+                width:100%; height:100px; float:left; margin-top:5px; clear: both; text-align: center; bottom: 0; font-family:"fo"; font-size: 13pt; color:black;
             }
+            button{
+                width:50px;
+                height: 50px;
+                color:black;
+                background: cornsilk;
+                font-size: 16px;
+                border:none;
+                border-radius: 20px;
+                box-shadow: 0 4px 16px black;
+                transition:0.3s;
+                position: absolute;
+                left:50%;
+                top:50%;
+                transform: translate(-50%,-50%);
+            }
+            button:focus {
+                outline:0;
+            }
+            button:hover{
+                background: cornsilk;
+                cursor: pointer;
+                box-shadow: 0 2px 4px black;
+            }        
+
         </style>
         <script type="text/javascript">
             function change(){
@@ -126,9 +159,9 @@
     <form name="frm">
     <div class="center">
         <div class="head">
-            <div>색을 통한 치유, 컬러테라피</div>
+            <div>색을 통한 치유, 컬러테라피<button id="button" onclick="change();changeImg();">확인</button></div>
             <h1 text-indent: 2em>Life Color ?</h1>
-            <div>내가 태어난 날에 녹아 있는 삶의 컬러 에너지          <button id="button" class="bu" onclick="change();changeImg();">알아보기</button></div>
+            <div><p class="hea">내가 태어난 날에 녹아 있는 삶의 컬러 에너지</p></div>
         </div>
         <div class="mid-box">
             <table class="ta1">
@@ -138,10 +171,10 @@
                 </tr>
             </table>
             <table class="ta2">
-                <th class="c1">탄생 컬러</th>
-                <th class="c1">생애 컬러</th>
-                <th class="c1">생애 컬러</th>
-                <th class="c1">인생여정 컬러</th>
+                <th class="c1">탄생 Color</th>
+                <th class="c1">생애 Color</th>
+                <th class="c1">생애 Color</th>
+                <th class="c1">인생여정 Color</th>
                 <tr>
                     <td class="c2"><input class="result" type="hidden" name="tsc" size="2" /><img id="tsci" class="img1" src="colorbottle9/0.png"></td>
                     <td class="c2"><input class="result" type="hidden" name="sac1" size="2" /><img id="sac1i" class="img1" src="colorbottle9/0.png"></td>
