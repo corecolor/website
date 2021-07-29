@@ -126,50 +126,39 @@
         </style>
         <script type="text/javascript">
             function change(){
-                //폼 객체 선택
                 var frm = document.forms['frm'];
-                // 주민번호 받기
                 var jumin = frm['jumin'].value;
                 var jumin1 = jumin.split('-')
-                // 주민번호 년,월,일로 분리
                 var year = jumin1[0];
                 var month = jumin1[1];
                 var day = jumin1[2];
-                // 년,월,일 한자리 수로 분리하기
                 var year_sp = year.split('');
                 var month_sp = month.split('');
                 var day_sp = day.split('');
 
-                // 탄생컬러 넣기 첫번째
                 var tsc = day.replace(/(^0+)/, "");
                 frm['tsc'].value = tsc;
                 document.getElementById('tsci').src="colorbottle9/"+tsc+".png";
 
-                // 분리한 년,월,일 서로 더하기
-                var month_sum = parseInt(month_sp[0]) + parseInt(month_sp[1]); //0+7=7
-                var day_sum = parseInt(day_sp[0]) + parseInt(day_sp[1]); //0+9=9
-                var year_sum = parseInt(year_sp[0]) + parseInt(year_sp[1]) + parseInt(year_sp[2]) + parseInt(year_sp[3]); //1+9+9+7=26
+                var month_sum = parseInt(month_sp[0]) + parseInt(month_sp[1]);
+                var day_sum = parseInt(day_sp[0]) + parseInt(day_sp[1]);
+                var year_sum = parseInt(year_sp[0]) + parseInt(year_sp[1]) + parseInt(year_sp[2]) + parseInt(year_sp[3]);
                 year_sum = year_sum.toString();
 
-                // 전역 변수 지정
                 var fic;
                 var sec;
                 var thc;
 
-                //년도 두자리면 더해주기 26 -> 2+6 = 8
                 if (year_sum.length == 2) {
                     var years_sp = year_sum.split('');
                     var years_sum = parseInt(years_sp[0]) + parseInt(years_sp[1]);
-                    // 년도, 월, 일 더하기 24=(8)+7+9
                     fic = years_sum + month_sum + day_sum;
                     sec = fic;
-                    // 24 반으로 쪼개서 6=2+4
                     sec = sec.toString();
                     sec = sec.split('');
-                    sec = parseInt(sec[0]) + parseInt(sec[1]); // 6이 나옴
+                    sec = parseInt(sec[0]) + parseInt(sec[1]);
                     sec = sec.toString();
 
-                    //만약에 한자리가 아니고 두자리면
                     if (sec.length == 2) {
                         thc = sec;
                         thc = thc.toString();
@@ -187,24 +176,10 @@
                         frm['isc'].value = sec;
                         document.getElementById('isci').src="colorbottle9/"+sec+".png";
                     }
-                } else { // 아닐시 인생여정 넣고 끝내기
+                } else {
                     frm['isc'].value = year_sum;
                     document.getElementById('isci').src="colorbottle9/"+year_sum+".png";
                 }
-
-                // 탄생컬러 tsci, 생애컬러1 sac1i, 생애컬러2 sac2i, 인생 여정 isci
-
-                // 생애컬러1
-                // frm['sac1'].value = ??;
-                // document.getElementById('sac1i').src="colorbottle9/"+??+".png";
-
-                // 생애컬러2
-                // frm['sac2'].value = ??;
-                // document.getElementById('sac2i').src="colorbottle9/"+??+".png";
-
-                // 인생여정컬러 
-                // frm['isc'].value = ??;
-                // document.getElementById('isci').src="colorbottle9/"+??+".png";
 
                 event.preventDefault();
             }
@@ -227,7 +202,7 @@
                     <td class="b1"><p class="a1">생년월일</p></td>
                 </tr>
                 <tr>
-                    <td class="b1"><input type="text" class="in" style="border: skyblue 3px solid" name="jumin" value="1997-07-09"/></td>
+                    <td class="b1"><input type="text" class="in" style="border: skyblue 3px solid" name="jumin" value="1999-01-01"/></td>
                 </tr>
                 <tr>
                     <td class="b2"><button id="button" onclick="change();changeImg();">나의 인생 컬러 확인하기</button></td>
