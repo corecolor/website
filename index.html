@@ -7,11 +7,16 @@
         <style type="text/css">
             .center {
                 float:center;
-                margin: 90px;
-                background-color: skyblue
+                margin-left: 25%;
+                width: 600px;
+                height: 900px;
+                border: 1px black solid;
             }
             .mid-box {
-               padding-left: 100px; margin: -30px; font-size: 14pt;
+                margin-top: -30px;
+                height: 80%;
+                float: center;
+                font-size: 14pt;
             }
             h1 {
                 font-size: 120px;
@@ -22,74 +27,100 @@
                 font-size: 25pt;
             }
             div {
+                text-align: center;
                 font-size: 50px;
-                color: cornsilk;
             }
             .in {
-                font-size: 30pt;
-                width: 300px;
+                font-size: 15pt;
+                height: 50px;
+                width: 100%;
                 border: none;
                 background: transparent;
-                color: cornsilk;
             }
             .ta1 {
-                width: 600px;
-                height: 10px;
+                position: relative;
+                left: 10%;
+                width: 80%;
             }
             .ta2 {
-                width: 50%;
-                height: 30%;
-                margin: -20px;
+                position: relative;
+                left: 10%;
+                width: 80%;
+                height: 60%;
             }
             .head {
                 float:center;
                 margin: 50px;
             }
             .a1 {
-                font-size:30pt;
-                color: cornsilk;
+                font-size:15pt;
+                font-weight: 900;
             }
             .b1 {
-                width: 30%;
+                width: 50%;
                 height: 50px;
                 text-align: left;
                 font-size: 12pt;
             }
+            .b2 {
+                text-align: left;
+                width: 50%;
+                height: 100px;
+            }
             .c1 {
                 width: 1px;
-                height: 50px;
-                font-size: 20pt;
+                height: 30px;
+                font-size: 14pt;
+                font-weight: 900;
                 text-align: center;
                 padding: 2%;
-                color: cornsilk;
             }
             .c2 {
-                width: 5%;
-                height: 150px;
+                width: 1px;
+                height: 50px;
+                font-size: 14pt;
                 text-align: center;
+                padding: 2%;
             }
-            #footer {
-                width:100%; height:100px; float:left; margin-top:5px; clear: both; text-align: center; bottom: 0; font-family:"fo"; font-size: 13pt; color:black;
+            .c3 {
+                width: 1px;
+                height: 20px;
+                font-size: 14pt;
+                font-weight: 900;
+                text-align: center;
+                padding: 2%;
             }
             button{
-                width:50px;
+                width: 100%;
                 height: 50px;
-                color:black;
-                background: cornsilk;
-                font-size: 16px;
+                color:whitesmoke;
+                background: deepskyblue;
+                font-size: 20px;
+                font-weight: 900;
                 border:none;
-                border-radius: 20px;
                 transition:0.3s;
-                position: static;
-                transform: translate(30%,-30%);
             }
             button:focus {
                 outline:0;
             }
             button:hover{
-                background: cornsilk;
+                background: deepskyblue;
                 cursor: pointer;
                 box-shadow: 0 2px 4px black;
+            }
+            #top {
+                color: deepskyblue;
+                font-size: 30%;
+                font-weight: 900;
+            }
+            #top1 {
+                color: black;
+                font-size: 60%;
+                font-weight: 900;
+            }
+            .img1 {
+                max-width: 50%;
+                height: auto;
             }        
 
         </style>
@@ -108,46 +139,73 @@
                 var year_sp = year.split('');
                 var month_sp = month.split('');
                 var day_sp = day.split('');
-                // 분리한 년,월,일 서로 더하기
-                var month_sum = parseInt(month_sp[0]) + parseInt(month_sp[1]);
-                var day_sum = parseInt(day_sp[0]) + parseInt(day_sp[1]);
-                var year_sum = parseInt(year_sp[0]) + parseInt(year_sp[1]) + parseInt(year_sp[2]) + parseInt(year_sp[3]);
+
                 // 탄생컬러 넣기 첫번째
                 var tsc = day.replace(/(^0+)/, "");
                 frm['tsc'].value = tsc;
                 document.getElementById('tsci').src="colorbottle9/"+tsc+".png";
+
+                // 분리한 년,월,일 서로 더하기
+                var month_sum = parseInt(month_sp[0]) + parseInt(month_sp[1]); //0+7=7
+                var day_sum = parseInt(day_sp[0]) + parseInt(day_sp[1]); //0+9=9
+                var year_sum = parseInt(year_sp[0]) + parseInt(year_sp[1]) + parseInt(year_sp[2]) + parseInt(year_sp[3]); //1+9+9+7=26
+                year_sum = year_sum.toString();
+
                 // 전역 변수 지정
                 var fic;
                 var sec;
                 var thc;
-                // 두번째 과정
-                fic = year_sum + month_sum + day_sum;
-                fic = fic.toString();
-                fic = fic.split('');
-                fic = parseInt(fic[0]) + parseInt(fic[1]);
-                fic = fic.toString();
-                if (fic.length == 2) {
-                    frm['sac1'].value = fic;
-                    document.getElementById('sac1i').src="colorbottle9/"+fic+".png";
-                    var fic_sp = fic.split('');
-                    var fic_sum = parseInt(fic_sp[0]) + parseInt(fic_sp[1]);
-                    fic_sum.toString();
-                    if (fic_sum.length == 2) {
-                        sec = fic_sum.split('');
-                        var sec_sum = parseInt(sec[0]) + parseInt(sec[1]);
-                        frm['sac2'].value = fic_sum;
-                        document.getElementById('sac2i').src="colorbottle9/"+fic_sum+".png";
-                        frm['isc'].value = sec_sum;
-                        document.getElementById('isci').src="colorbottle9/"+sec_sum+".png";
+
+                //년도 두자리면 더해주기 26 -> 2+6 = 8
+                if (year_sum.length == 2) {
+                    var years_sp = year_sum.split('');
+                    var years_sum = parseInt(years_sp[0]) + parseInt(years_sp[1]);
+                    // 년도, 월, 일 더하기 24=(8)+7+9
+                    fic = years_sum + month_sum + day_sum;
+                    sec = fic;
+                    // 24 반으로 쪼개서 6=2+4
+                    sec = sec.toString();
+                    sec = sec.split('');
+                    sec = parseInt(sec[0]) + parseInt(sec[1]); // 6이 나옴
+                    sec = sec.toString();
+
+                    //만약에 한자리가 아니고 두자리면
+                    if (sec.length == 2) {
+                        thc = sec;
+                        thc = thc.toString();
+                        thc = thc.split('');
+                        thc = parseInt(thc[0]) + parseInt(thc[1]);
+                        frm['sac1'].value = fic;
+                        document.getElementById('sac1i').src="colorbottle9/"+fic+".png"
+                        frm['sac2'].value = sec;
+                        document.getElementById('sac2i').src="colorbottle9/"+sec+".png";
+                        frm['isc'].value = thc;
+                        document.getElementById('isci').src="colorbottle9/"+thc+".png";
                     } else {
-                        frm['isc'].value = fic_sum;
-                        document.getElementById('isci').src="colorbottle9/"+fic_sum+".png";
+                        frm['sac1'].value = fic;
+                        document.getElementById('sac1i').src="colorbottle9/"+fic+".png"
+                        frm['isc'].value = sec;
+                        document.getElementById('isci').src="colorbottle9/"+sec+".png";
                     }
-                } else {
-                    frm['isc'].value = fic;
-                    document.getElementById('isci').src="colorbottle9/"+fic+".png";
+                } else { // 아닐시 인생여정 넣고 끝내기
+                    frm['isc'].value = year_sum;
+                    document.getElementById('isci').src="colorbottle9/"+year_sum+".png";
                 }
-                
+
+                // 탄생컬러 tsci, 생애컬러1 sac1i, 생애컬러2 sac2i, 인생 여정 isci
+
+                // 생애컬러1
+                // frm['sac1'].value = ??;
+                // document.getElementById('sac1i').src="colorbottle9/"+??+".png";
+
+                // 생애컬러2
+                // frm['sac2'].value = ??;
+                // document.getElementById('sac2i').src="colorbottle9/"+??+".png";
+
+                // 인생여정컬러 
+                // frm['isc'].value = ??;
+                // document.getElementById('isci').src="colorbottle9/"+??+".png";
+
                 event.preventDefault();
             }
         </script>
@@ -156,34 +214,45 @@
     <form name="frm">
     <div class="center">
         <div class="head">
-            <div>색을 통한 치유, 컬러테라피<button id="button" onclick="change();changeImg();">Core</button></div>
-            <h1 text-indent: 2em>Life Color ?</h1>
-            <div><p class="hea">내가 태어난 날에 녹아 있는 삶의 컬러 에너지</p></div>
+            <div id="top">색을 통한 치유, 컬러테라피</div>
+            <div id="top1">나의 인생 컬러는?</div>
         </div>
         <div class="mid-box">
             <table class="ta1">
-                    <th class="b1"><p class="a1">이 름</p></th><th class="b1"><input type="text" class="in" style="border:none" name="name" value="홍길동"/></th>
+                    <th class="b1"><p class="a1">이름</p></th>
                 <tr>
-                    <td class="b1"><p class="a1">생 년 월 일</p></td><td class="b1"><input type="text" class="in" style="border:none" name="jumin" value="1997-07-09"/></td>
+                    <td class="b1"><input type="text" class="in" style="border: skyblue 3px solid" name="name" value=""/></td>
+                </tr>
+                <tr>
+                    <td class="b1"><p class="a1">생년월일</p></td>
+                </tr>
+                <tr>
+                    <td class="b1"><input type="text" class="in" style="border: skyblue 3px solid" name="jumin" value="1997-07-09"/></td>
+                </tr>
+                <tr>
+                    <td class="b2"><button id="button" onclick="change();changeImg();">나의 인생 컬러 확인하기</button></td>
                 </tr>
             </table>
             <table class="ta2">
-                <th class="c1">탄생 컬러</th>
-                <th class="c1">생애 컬러</th>
-                <th class="c1">생애 컬러</th>
-                <th class="c1">인생여정 컬러</th>
+                    <th class="c1" colspan="2">나의 인생 컬러 결과</th>
                 <tr>
                     <td class="c2"><input class="result" type="hidden" name="tsc" size="2" /><img id="tsci" class="img1" src="colorbottle9/0.png"></td>
                     <td class="c2"><input class="result" type="hidden" name="sac1" size="2" /><img id="sac1i" class="img1" src="colorbottle9/0.png"></td>
+                </tr>
+                <tr>
+                    <td class="c3">탄생 컬러</td>
+                    <td class="c3">생애 컬러 1</td>
+                </tr>
+                <tr>
                     <td class="c2"><input class="result" type="hidden" name="sac2" size="2" /><img id="sac2i" class="img1" src="colorbottle9/0.png"></td>
                     <td class="c2"><input class="result" type="hidden" name="isc" size="2" /><img id="isci" class="img1" src="colorbottle9/0.png"></td>
                 </tr>
+                <tr>
+                    <td class="c3">생애 컬러 2</td>
+                    <td class="c3">인생여정 컬러</td>
+                </tr>
             </table>
         </div>
-    </div>
-    <div id="footer">
-    <p>Copyright © 2019 HEILENDE BAUM CO.LTD All rights resrtved.</p>
-    <p>상시 저작권에 대한 사항은 (주) 하이렌더 바움에 있으며 사전 승인 없이 무단전재 및 재배포 경우,관령 법령에 의거 재재를 받을 수 있습니다.</p>
     </div>
     </form>
     </body>
