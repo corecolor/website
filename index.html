@@ -139,59 +139,65 @@
         </style>
         <script type="text/javascript">
             function change(){
+                // 주민번호 분리 ( year 년 month 월 day 일)
                 var frm = document.forms['frm'];
                 var jumin = frm['jumin'].value;
                 var jumin1 = jumin.split('-')
-                var year = jumin1[0];
+                var year = jumin1[0]; 
                 var month = jumin1[1];
                 var day = jumin1[2];
+                
+                // 연월일 분리
                 var year_sp = year.split('');
                 var month_sp = month.split('');
                 var day_sp = day.split('');
-
+                
+                // 일 앞에 붙는 0 제거하고 탄생 컬러에 넣기
                 var tsc = day.replace(/(^0+)/, "");
                 frm['tsc'].value = tsc;
                 document.getElementById('tsci').src="colorbottle9/"+tsc+".png";
-
-                var month_sum = parseInt(month_sp[0]) + parseInt(month_sp[1]);
-                var day_sum = parseInt(day_sp[0]) + parseInt(day_sp[1]);
+                
+                // 월과 일 작업
+                var monday = parseInt(month_sp[0]) + parseInt(month_sp[1]) + parseInt(day_sp[0]) + parseInt(day_sp[1]);
+                monday = monday.toString();
+                if (monday.length == 2) {
+                    monday = monday.split('');
+                    monday = parseInt(monday[0]) + parseInt(monday[1]);
+                } else {
+                    monday = parseInt(monday);
+                }
+                
+                // 연 작업
                 var year_sum = parseInt(year_sp[0]) + parseInt(year_sp[1]) + parseInt(year_sp[2]) + parseInt(year_sp[3]);
                 year_sum = year_sum.toString();
-
-                var fic;
-                var sec;
-                var thc;
-
                 if (year_sum.length == 2) {
-                    var years_sp = year_sum.split('');
-                    var years_sum = parseInt(years_sp[0]) + parseInt(years_sp[1]);
-                    fic = years_sum + month_sum + day_sum;
-                    sec = fic;
-                    sec = sec.toString();
-                    sec = sec.split('');
-                    sec = parseInt(sec[0]) + parseInt(sec[1]);
-                    sec = sec.toString();
-
-                    if (sec.length == 2) {
-                        thc = sec;
-                        thc = thc.toString();
-                        thc = thc.split('');
-                        thc = parseInt(thc[0]) + parseInt(thc[1]);
-                        frm['sac1'].value = fic;
-                        document.getElementById('sac1i').src="colorbottle9/"+fic+".png"
-                        frm['sac2'].value = sec;
-                        document.getElementById('sac2i').src="colorbottle9/"+sec+".png";
-                        frm['isc'].value = thc;
-                        document.getElementById('isci').src="colorbottle9/"+thc+".png";
-                    } else {
-                        frm['sac1'].value = fic;
-                        document.getElementById('sac1i').src="colorbottle9/"+fic+".png"
-                        frm['isc'].value = sec;
-                        document.getElementById('isci').src="colorbottle9/"+sec+".png";
-                    }
+                    year_sp = year_sum.split('');
+                    year_sum = parseInt(year_sp[0]) + parseInt(year_sp[1]);
                 } else {
-                    frm['isc'].value = year_sum;
-                    document.getElementById('isci').src="colorbottle9/"+year_sum+".png";
+                    year_sum = parseInt(year_sum);
+                }
+                // 첫번째 과정
+                var fic = year_sum + monday;
+                fic = fic.toString();
+                // 두번째 과정
+                var sec = parseInt(fic[0]) + parseInt(fic[1]);
+                sec = sec.toString();
+                // 세번째 과정
+                if (sec.length == 2) {
+                    var thc = parseInt(sec[0]) + parseInt(sec[1]);
+                    frm['sac1'].value = fic;
+                    document.getElementById('sac1i').src="colorbottle9/"+fic+".png";
+                    frm['sac2'].value = sec;
+                    document.getElementById('sac2i').src="colorbottle9/"+sec+".png";
+                    frm['isc'].value = thc;
+                    document.getElementById('isci').src="colorbottle9/"+thc+".png";
+                } else {
+                    frm['sac1'].value = fic;
+                    document.getElementById('sac1i').src="colorbottle9/"+fic+".png";
+                    frm['sac2'].value = 0;
+                    document.getElementById('sac2i').src="colorbottle9/"+0+".png";
+                    frm['isc'].value = sec;
+                    document.getElementById('isci').src="colorbottle9/"+sec+".png";
                 }
 
                 event.preventDefault();
