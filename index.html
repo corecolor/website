@@ -120,7 +120,7 @@
             }
             .img1 {
                 max-width: 50%;
-                height: auto;
+                height: 250%;
             }
             #footer {
                 width:100%;
@@ -155,29 +155,19 @@
                 // 일 앞에 붙는 0 제거하고 탄생 컬러에 넣기
                 var tsc = day.replace(/(^0+)/, "");
                 frm['tsc'].value = tsc;
-                document.getElementById('tsci').src="colorbottle9/"+tsc+".png";
+                document.getElementById('tsci').src="colorbottle9/"+tsc+".jpg";
                 
                 // 월과 일 작업
                 var monday = parseInt(month_sp[0]) + parseInt(month_sp[1]) + parseInt(day_sp[0]) + parseInt(day_sp[1]);
-                monday = monday.toString();
-                if (monday.length == 2) {
-                    monday = monday.split('');
-                    monday = parseInt(monday[0]) + parseInt(monday[1]);
-                } else {
-                    monday = parseInt(monday);
-                }
-                
+
                 // 연 작업
                 var year_sum = parseInt(year_sp[0]) + parseInt(year_sp[1]) + parseInt(year_sp[2]) + parseInt(year_sp[3]);
-                year_sum = year_sum.toString();
-                if (year_sum.length == 2) {
-                    year_sp = year_sum.split('');
-                    year_sum = parseInt(year_sp[0]) + parseInt(year_sp[1]);
-                } else {
-                    year_sum = parseInt(year_sum);
-                }
+                
+                var conum = monday + year_sum;
+                conum = conum.toString();
+                
                 // 첫번째 과정
-                var fic = year_sum + monday;
+                var fic = conum;
                 fic = fic.toString();
                 // 두번째 과정
                 var sec = parseInt(fic[0]) + parseInt(fic[1]);
@@ -186,18 +176,18 @@
                 if (sec.length == 2) {
                     var thc = parseInt(sec[0]) + parseInt(sec[1]);
                     frm['sac1'].value = fic;
-                    document.getElementById('sac1i').src="colorbottle9/"+fic+".png";
+                    document.getElementById('sac1i').src="colorbottle9/"+fic+".jpg";
                     frm['sac2'].value = sec;
-                    document.getElementById('sac2i').src="colorbottle9/"+sec+".png";
+                    document.getElementById('sac2i').src="colorbottle9/"+sec+".jpg";
                     frm['isc'].value = thc;
-                    document.getElementById('isci').src="colorbottle9/"+thc+".png";
+                    document.getElementById('isci').src="colorbottle9/"+thc+".jpg";
                 } else {
                     frm['sac1'].value = fic;
-                    document.getElementById('sac1i').src="colorbottle9/"+fic+".png";
+                    document.getElementById('sac1i').src="colorbottle9/"+fic+".jpg";
                     frm['sac2'].value = 0;
-                    document.getElementById('sac2i').src="colorbottle9/"+0+".png";
+                    document.getElementById('sac2i').src="colorbottle9/"+0+".jpg";
                     frm['isc'].value = sec;
-                    document.getElementById('isci').src="colorbottle9/"+sec+".png";
+                    document.getElementById('isci').src="colorbottle9/"+sec+".jpg";
                 }
 
                 event.preventDefault();
@@ -230,16 +220,16 @@
             <table class="ta2">
                     <th class="c1" colspan="2">나의 인생 컬러 결과</th>
                 <tr>
-                    <td class="c2"><input class="result" type="hidden" name="tsc" size="2" /><img id="tsci" class="img1" src="colorbottle9/0.png"></td>
-                    <td class="c2"><input class="result" type="hidden" name="sac1" size="2" /><img id="sac1i" class="img1" src="colorbottle9/0.png"></td>
+                    <td class="c2"><input class="result" type="hidden" name="tsc" size="2" /><img id="tsci" class="img1" src="colorbottle9/0.jpg"></td>
+                    <td class="c2"><input class="result" type="hidden" name="sac1" size="2" /><img id="sac1i" class="img1" src="colorbottle9/0.jpg"></td>
                 </tr>
                 <tr>
                     <td class="c3">탄생 컬러</td>
                     <td class="c3">생애 컬러 1</td>
                 </tr>
                 <tr>
-                    <td class="c2"><input class="result" type="hidden" name="sac2" size="2" /><img id="sac2i" class="img1" src="colorbottle9/0.png"></td>
-                    <td class="c2"><input class="result" type="hidden" name="isc" size="2" /><img id="isci" class="img1" src="colorbottle9/0.png"></td>
+                    <td class="c2"><input class="result" type="hidden" name="sac2" size="2" /><img id="sac2i" class="img1" src="colorbottle9/0.jpg"></td>
+                    <td class="c2"><input class="result" type="hidden" name="isc" size="2" /><img id="isci" class="img1" src="colorbottle9/0.jpg"></td>
                 </tr>
                 <tr>
                     <td class="c3">생애 컬러 2</td>
